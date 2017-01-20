@@ -10,9 +10,11 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
 import com.android.floatingsearchviewtest.R;
+import com.android.floatingsearchviewtest.data.ColorWrapper;
 import com.arlib.floatingsearchview.util.Util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Aleksreal7 on 1/17/17.
