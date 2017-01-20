@@ -3,6 +3,9 @@ package com.android.floatingsearchviewtest.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Aleksreal7 on 1/19/17.
  */
