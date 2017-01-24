@@ -26,22 +26,21 @@ public class SearchResultsListAdapter extends RecyclerView.Adapter<SearchResults
 
     private int mLastAnimatedItemPosition = -1;
 
-    public interface OnItemClickListener {
+    public interface OnItemClickListener{
         void onClick(ColorWrapper colorWrapper);
     }
 
     private OnItemClickListener mItemsOnClickListener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
         public final TextView mColorName;
         public final TextView mColorValue;
         public final View mTextContainer;
 
         public ViewHolder(View view) {
             super(view);
-            mColorName = view.findViewById(R.id.color_name);
-            mColorValue = view.findViewById(R.id.color_value);
+            mColorName = (TextView) view.findViewById(R.id.color_name);
+            mColorValue = (TextView) view.findViewById(R.id.color_value);
             mTextContainer = view.findViewById(R.id.text_container);
         }
     }
@@ -51,7 +50,7 @@ public class SearchResultsListAdapter extends RecyclerView.Adapter<SearchResults
         notifyDataSetChanged();
     }
 
-    public void setItemsOnClickListener(OnItemClickListener onClickListener) {
+    public void setItemsOnClickListener(OnItemClickListener onClickListener){
         this.mItemsOnClickListener = onClickListener;
     }
 
@@ -64,6 +63,7 @@ public class SearchResultsListAdapter extends RecyclerView.Adapter<SearchResults
 
     @Override
     public void onBindViewHolder(SearchResultsListAdapter.ViewHolder holder, final int position) {
+
         ColorWrapper colorSuggestion = mDataSet.get(position);
         holder.mColorName.setText(colorSuggestion.getName());
         holder.mColorValue.setText(colorSuggestion.getHex());
@@ -72,15 +72,15 @@ public class SearchResultsListAdapter extends RecyclerView.Adapter<SearchResults
         holder.mColorName.setTextColor(color);
         holder.mColorValue.setTextColor(color);
 
-        if (mLastAnimatedItemPosition < position) {
+        if(mLastAnimatedItemPosition < position){
             animateItem(holder.itemView);
             mLastAnimatedItemPosition = position;
         }
 
-        if (mItemsOnClickListener != null) {
+        if(mItemsOnClickListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
                     mItemsOnClickListener.onClick(mDataSet.get(position));
                 }
             });
