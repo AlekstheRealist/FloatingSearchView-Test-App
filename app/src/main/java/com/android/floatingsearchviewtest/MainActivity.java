@@ -11,14 +11,16 @@ import android.view.MenuItem;
 import com.android.floatingsearchviewtest.fragments.BaseExampleFragment;
 import com.android.floatingsearchviewtest.fragments.ScrollingSearchExampleFragment;
 import com.android.floatingsearchviewtest.fragments.SlidingSearchResultsExampleFragment;
+import com.android.floatingsearchviewtest.fragments.SlidingSearchViewExampleFragment;
 import com.arlib.floatingsearchview.FloatingSearchView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements BaseExampleFragment.BaseExampleFragmentCallbacks,
-    NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity
+        implements BaseExampleFragment.BaseExampleFragmentCallbacks, NavigationView.OnNavigationItemSelectedListener {
 
     private final String TAG = "MainActivity";
+
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements BaseExampleFragme
         switch (menuItem.getItemId()) {
             case R.id.sliding_list_example:
                 showFragment(new SlidingSearchResultsExampleFragment());
+                return true;
+            case R.id.sliding_search_bar_example:
+                showFragment(new SlidingSearchViewExampleFragment());
                 return true;
             case R.id.scrolling_search_bar_example:
                 showFragment(new ScrollingSearchExampleFragment());

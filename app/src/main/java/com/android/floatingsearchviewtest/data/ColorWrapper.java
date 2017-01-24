@@ -15,11 +15,9 @@ public class ColorWrapper implements Parcelable {
     @SerializedName("hex")
     @Expose
     private String hex;
-
     @SerializedName("name")
     @Expose
     private String name;
-
     @SerializedName("rgb")
     @Expose
     private String rgb;

@@ -55,6 +55,7 @@ public class DataHelper {
     }
 
     public static List<ColorSuggestion> getHistory(Context context, int count) {
+
         List<ColorSuggestion> suggestionList = new ArrayList<>();
         ColorSuggestion colorSuggestion;
         for (int i = 0; i < sColorSuggestions.size(); i++) {
@@ -77,6 +78,7 @@ public class DataHelper {
     public static void findSuggestions(Context context, String query, final int limit, final long simulatedDelay,
                                        final OnFindSuggestionsListener listener) {
         new Filter() {
+
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
 
@@ -89,9 +91,11 @@ public class DataHelper {
                 DataHelper.resetSuggestionsHistory();
                 List<ColorSuggestion> suggestionList = new ArrayList<>();
                 if (!(constraint == null || constraint.length() == 0)) {
+
                     for (ColorSuggestion suggestion : sColorSuggestions) {
                         if (suggestion.getBody().toUpperCase()
                                 .startsWith(constraint.toString().toUpperCase())) {
+
                             suggestionList.add(suggestion);
                             if (limit != -1 && suggestionList.size() == limit) {
                                 break;
@@ -107,7 +111,6 @@ public class DataHelper {
                         return lhs.getIsHistory() ? -1 : 0;
                     }
                 });
-
                 results.values = suggestionList;
                 results.count = suggestionList.size();
 
@@ -116,12 +119,15 @@ public class DataHelper {
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
+
                 if (listener != null) {
                     listener.onResults((List<ColorSuggestion>) results.values);
                 }
             }
         }.filter(query);
+
     }
+
 
     public static void findColors(Context context, String query, final OnFindColorsListener listener) {
         initColorWrapperList(context);
@@ -130,9 +136,12 @@ public class DataHelper {
 
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
+
+
                 List<ColorWrapper> suggestionList = new ArrayList<>();
 
                 if (!(constraint == null || constraint.length() == 0)) {
+
                     for (ColorWrapper color : sColorWrappers) {
                         if (color.getName().toUpperCase()
                                 .startsWith(constraint.toString().toUpperCase())) {
@@ -140,6 +149,7 @@ public class DataHelper {
                             suggestionList.add(color);
                         }
                     }
+
                 }
 
                 FilterResults results = new FilterResults();
@@ -151,14 +161,17 @@ public class DataHelper {
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
+
                 if (listener != null) {
                     listener.onResults((List<ColorWrapper>) results.values);
                 }
             }
         }.filter(query);
+
     }
 
     private static void initColorWrapperList(Context context) {
+
         if (sColorWrappers.isEmpty()) {
             String jsonString = loadJson(context);
             sColorWrappers = deserializeColors(jsonString);
@@ -166,6 +179,7 @@ public class DataHelper {
     }
 
     private static String loadJson(Context context) {
+
         String jsonString;
 
         try {
@@ -184,10 +198,12 @@ public class DataHelper {
     }
 
     private static List<ColorWrapper> deserializeColors(String jsonString) {
+
         Gson gson = new Gson();
 
         Type collectionType = new TypeToken<List<ColorWrapper>>() {
         }.getType();
         return gson.fromJson(jsonString, collectionType);
     }
+
 }

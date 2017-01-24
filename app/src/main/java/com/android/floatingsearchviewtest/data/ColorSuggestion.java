@@ -9,6 +9,7 @@ import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
  */
 
 public class ColorSuggestion implements SearchSuggestion {
+
     private String mColorName;
     private boolean mIsHistory = false;
 
